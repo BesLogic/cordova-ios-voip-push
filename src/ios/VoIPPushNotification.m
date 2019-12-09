@@ -41,7 +41,7 @@
 
 - (void)pushRegistry:(PKPushRegistry *)registry didReceiveIncomingPushWithPayload:(PKPushPayload *)payload forType:(NSString *)type
 {
-        NSMutableDictionary* results = [NSMutableDictionary dictionaryWithCapacity:1];
+    NSMutableDictionary* results = [NSMutableDictionary dictionaryWithCapacity:1];
     [results setObject:payload.dictionaryPayload forKey:@"data"];
 
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:results];
