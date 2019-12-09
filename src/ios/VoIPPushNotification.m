@@ -33,7 +33,7 @@
     NSMutableDictionary* results = [NSMutableDictionary dictionaryWithCapacity:2];
     [results setObject:sToken forKey:@"deviceToken"];
     [results setObject:@"true" forKey:@"registration"];
-    
+
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:results];
     [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]]; //[pluginResult setKeepCallbackAsBool:YES];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:self.VoIPPushCallbackId];
@@ -41,16 +41,9 @@
 
 - (void)pushRegistry:(PKPushRegistry *)registry didReceiveIncomingPushWithPayload:(PKPushPayload *)payload forType:(NSString *)type
 {
-    NSDictionary *payloadDict = payload.dictionaryPayload[@"aps"];
-    NSLog(@"[objC] didReceiveIncomingPushWithPayload: %@", payloadDict);
+    NSMutableDictionary* results = [NSMutableDictionary dictionaryWithCapacity:1];
+    [results setObject:dictionaryPayload forKey:@"data"];
 
-    NSString *message = payloadDict[@"alert"];
-    NSLog(@"[objC] received VoIP msg: %@", message);
-
-    NSMutableDictionary* results = [NSMutableDictionary dictionaryWithCapacity:2];
-    [results setObject:message forKey:@"function"];
-    [results setObject:@"someOtherDataForField" forKey:@"someOtherField"];
-    
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:results];
     [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:self.VoIPPushCallbackId];
