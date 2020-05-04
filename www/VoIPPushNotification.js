@@ -128,6 +128,10 @@ module.exports = {
         return new VoIPPushNotification(options);
     },
 
+    grantPermission: function (success, error) {
+        exec(success, error, "VoIPPushNotification", "grantPermission", []);
+    },
+
     /**
      * VoIPPushNotification Object.
      *
