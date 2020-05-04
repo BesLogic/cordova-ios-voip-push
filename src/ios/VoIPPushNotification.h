@@ -5,5 +5,6 @@
 
 @property (nonatomic, copy) NSString *VoIPPushCallbackId;
 - (void)init:(CDVInvokedUrlCommand*)command;
+- (void)grantPermission:(CDVInvokedUrlCommand*)command;
 
 @end
