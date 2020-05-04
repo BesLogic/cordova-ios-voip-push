@@ -87,14 +87,12 @@
 
             if (![NSThread isMainThread]) {
                 dispatch_sync(dispatch_get_main_queue(), ^{
-                    [[FIRMessaging messaging] setDelegate:self];
                     [[UIApplication sharedApplication] registerForRemoteNotifications];
 
                     CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus: granted ? CDVCommandStatus_OK : CDVCommandStatus_ERROR];
                     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
                 });
             } else {
-                [[FIRMessaging messaging] setDelegate:self];
                 [[UIApplication sharedApplication] registerForRemoteNotifications];
                 CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
                 [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
